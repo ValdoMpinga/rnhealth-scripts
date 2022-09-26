@@ -44,26 +44,26 @@ def iso8601ToDatetime(dateTimeDf):
 
 #Converts the Df to a numpy array and then extracts the X and y value
 #on the required format to train the model
-
-def df_to_X_y(df, window_size=6):
-    df_as_np = df.to_numpy() # converts the dataframe to a numpy array
-    #Initialized  arrays to append X and Y values 
-    X = []
-    y = []
-    for i in range(len(df_as_np)):
-        if((i + 4 + window_size)< len(df_as_np)):
-            #Takes values from i to i + win size
-            row =  [r for r in df_as_np[i:i+window_size]]
-            X.append(row)
-            #The final output
-            #print(( i + window_size))
-            label = df_as_np[i + 4 + window_size ][0]
-            y.append(label)
-    return np.array(X), np.array(y)
+def df_to_X_y(df,hoursToPredict, window_size=6,):
+        hoursToPredict = hoursToPredict - 1
+        df_as_np = df.to_numpy() # converts the dataframe to a numpy array
+        #Initialized  arrays to append X and Y values 
+        X = []
+        y = []
+        for i in range(len(df_as_np)):
+            if((i + hoursToPredict + window_size)< len(df_as_np)):
+                #Takes values from i to i + win size
+                row =  [r for r in df_as_np[i:i+window_size]]
+                X.append(row)
+                #The final output
+                #print(( i + window_size))
+                label = df_as_np[i + hoursToPredict + window_size ][0]
+                y.append(label)
+        return np.array(X), np.array(y)
 
 def Handler(hoursToPredict):
-    imputedMeasurementsDf = pd.read_csv('../../../../../../Data/ProcessedData/KnnImputed/measurementsImputedByKnn.csv')
-    measurementsDf = pd.read_csv('../../../../../../Data/RawData/rawMeasurementsFilteredBySensors.csv')
+    imputedMeasurementsDf = pd.read_csv('./../../../../../../../Data/ProcessedData/KnnImputed/measurementsImputedByKnn.csv')
+    measurementsDf = pd.read_csv('./../../../../../../../Data/RawData/rawMeasurementsFilteredBySensors.csv')
 
     dateTimeDf = pd.DataFrame(measurementsDf['time'])
 
@@ -79,21 +79,8 @@ def Handler(hoursToPredict):
     df['P'] = measurementsDf['P']
     df['T'] = measurementsDf['T']
 
-    X1, y1 = df_to_X_y(df)
+    X1, y1 = df_to_X_y(df,hoursToPredict)
     return X1, y1
-
-
-
-def Printer():
-    print("Snowfall")
-# In[3]:
-
-
-
-
-
-# In[ ]:
-
 
 
 
