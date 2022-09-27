@@ -1,37 +1,10 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[1]:
-
-
-
-
-
-# In[2]:
-
-import tensorflow as tf
-import os
-import pandas as pd
-import numpy as np
 import pandas as pd
 import numpy as np
 from datetime import timezone, datetime
-import seaborn as sns
-from matplotlib import pyplot as plt
-from sklearn.preprocessing import StandardScaler 
 import os
-from tensorflow.keras.models import Sequential
-from tensorflow.keras.layers import *
-from tensorflow.keras.callbacks import ModelCheckpoint
-from tensorflow.keras.losses import MeanSquaredError
-from tensorflow.keras.metrics import RootMeanSquaredError,MeanAbsoluteError
-from tensorflow.keras.metrics import Accuracy
-from tensorflow.keras.optimizers import Adam
-from tensorflow.keras.models import load_model
-
-os.environ['KMP_DUPLICATE_LIB_OK']='True'
-import absl.logging
-absl.logging.set_verbosity(absl.logging.ERROR)
     
 #Converts the datetime string in iso 8601 format to python datetime format
 def iso8601ToDatetime(dateTimeDf):
@@ -55,12 +28,11 @@ def df_to_X_y(df,hoursToPredict, window_size=6,):
                 #Takes values from i to i + win size
                 row =  [r for r in df_as_np[i:i+window_size]]
                 X.append(row)
-                #The final output
-                #print(( i + window_size))
                 label = df_as_np[i + hoursToPredict + window_size ][0]
                 y.append(label)
         return np.array(X), np.array(y)
 
+#Returns the data organized according to how many hours we want to forecast
 def Handler(hoursToPredict):
     imputedMeasurementsDf = pd.read_csv('./../../../../../../../Data/ProcessedData/KnnImputed/measurementsImputedByKnn.csv')
     measurementsDf = pd.read_csv('./../../../../../../../Data/RawData/rawMeasurementsFilteredBySensors.csv')
@@ -81,6 +53,3 @@ def Handler(hoursToPredict):
 
     X1, y1 = df_to_X_y(df,hoursToPredict)
     return X1, y1
-
-
-
