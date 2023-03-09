@@ -18,17 +18,6 @@ def inverse_scale_1d(array, scaler, column, data):
 
 
 def normalize_forecast_input_data(data, means, stds):
-    """
-    Normalize a single input to prepare it for prediction.
-
-    Parameters:
-    - data: a list of lists, where each list inside represents a row of data
-    - means: a list of means for each column
-    - stds: a list of standard deviations for each column
-
-    Returns:
-    - normalized_data: a list of lists, where each list inside represents a row of normalized data
-    """
     normalized_data = []
     for i in range(len(data)):
         normalized_row = [(data[i][j] - means[j]) / stds[j]
@@ -43,17 +32,6 @@ def inverse_normalize_value(normalized_value, mean, std):
 
 
 def inverse_forecast_normalize_data(normalized_data, means, stds):
-    """
-    Inverse normalize a single input to realize the prediction.
-
-    Parameters:
-    - data: a list of lists, where each list inside represents a row of data
-    - means: a list of means for each column
-    - stds: a list of standard deviations for each column
-
-    Returns:
-    - inverse_normalized_data: a list of lists, where each list inside represents a row of inverse normalized data
-    """
     original_data = []
     for i in range(len(normalized_data)):
         if len(normalized_data[i]) != len(means) or len(normalized_data[i]) != len(stds):
@@ -83,8 +61,3 @@ def df_to_X_y(df, hoursToPredict, windowSize):
 def mae(y_true, predictions):
     y_true, predictions = np.array(y_true), np.array(predictions)
     return np.mean(np.abs(y_true - predictions))
-
-def datasetCleaner(df):
-    df['time'] = pd.to_datetime(df['time'], format='%Y-%m-%d %H:%M:%S')
-    df.index = df['time']
-    df = df.drop(['time'], axis=1)
