@@ -31,7 +31,7 @@ D003/: Represents another specific sensor and follows the same structure as D001
 
 - D001/: Represents a specific sensor and contains the corresponding Bidirectional LSTM models trained on it.
 
-- <Hour>_Forecast/: This folder structure represents the forecast duration, ranging from 1 to 6 hours. Inside each folder, you can find the Bidirectional LSTM models that forecast the indoor radon concentration for the specified duration.
+- n_Forecast/: This folder structure represents the forecast duration, ranging from 1 to 6 hours. Inside each folder, you can find the Bidirectional LSTM models that forecast the indoor radon concentration for the specified duration.
 
 - D003/: Represents another specific sensor and follows the same structure as D001/.
 
