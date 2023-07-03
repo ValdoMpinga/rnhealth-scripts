@@ -35,4 +35,4 @@ D003/: Represents another specific sensor and follows the same structure as D001
 
 - D003/: Represents another specific sensor and follows the same structure as D001/.
 
-This work is a result of the project TECH - Technology, Environment, Creativity and Health, Norte-01-0145-FEDER-000043, supported by Norte Portugal Regional Operational Program (NORTE 2020), under the PORTUGAL 2020 Partnership Agreement, through the European Regional Development Fund (ERDF)
+This work is a result of the project TECH - Technology, Environment, Creativity and Health, Norte-01-0145-FEDER-000043, supported by Norte Portugal Regional Operational Program (NORTE 2020), under the PORTUGAL 2020 Partnership Agreement, through the European Regional Development Fund (ERDF).
