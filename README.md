@@ -1,4 +1,4 @@
-#Indoor Radon Concentration Forecasting
+# Indoor Radon Concentration Forecasting
 
 This GitHub repository contains Jupyter notebooks with Python code for implementing and evaluating two LSTM-based approaches for indoor radon concentration forecasting. 
 The goal of this project is to leverage Machine Learning (ML) techniques to predict future levels of indoor radon gas based on past and current data. 
